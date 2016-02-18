@@ -1,115 +1,86 @@
-<!DOCTYPE html >
 <html>
 <head>
-  <meta charset='UTF-8'/>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-  <meta name='robots' content='index'/>
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <title>Customer title</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.grey-green.min.css" />
-  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-  <script src="js/gameplan.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="css/style.css">
+    <!--
+        200 - 299: body stuff
+        1000 - 1999: header stuff
+        2000 - 2999: subheader stuff
+        3000 - 3999: hamburger nav stuff
+        4000 - 4999: custom body scripts / css
+        5000 - 5999: custom footer
+    -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/partners/secure/css/new-style.css">
+
+    <!--
+    customer header stuff
+    -->
+    <[content-group:1900]>
 </head>
 <body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-    <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
-      <div class="mdl-layout__header-row">
-        <span class="android-title mdl-layout-title">
-          customer logo
-        </span>
-        <!-- Add spacer, to align navigation to the right in desktop -->
-        <div class="android-header-spacer mdl-layout-spacer"></div>
+    <!-- customer top body -->
+    <[content-group:4000]>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-        <!-- Navigation -->
-        <div class="gameplan-navigation-container">
-          <nav class="gameplan-navigation mdl-navigation">
-            <a class="mdl-navigation__link" href="">Customer header</a>
+      <div class="mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">
+            <!-- customer logo -->
+            <[content-group:1000]>
+          </span>
+          <!-- Add spacer, to align navigation to the right in desktop -->
+          <div class="mdl-layout-spacer"></div>
 
-
-          </nav>
+          <!-- Navigation -->
+          <div class="">
+            <nav class="mdl-navigation">
+                <!-- customer nav -->
+                  <[content-group:1100]>
+                <!-- /customer nav -->
+            </nav>
+          </div>
+          <span class="mdl-layout-title">
+            <[content-group:1200]>
+          </span>
+          <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+            <[content-group:1300]>
+          </ul>
         </div>
+        <div><[content-group:1400]></div>
+      </div>
 
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">
+          <!-- customer nav drawer -->
+        </span>
+        <nav class="mdl-navigation">
+          <[content-group:2000]>
+        </nav>
+      </div>
 
+      <div class="mdl-layout__content">
+        <a name="top"></a>
+
+          <[content-group:200]>
+          <[content-group:201]>
+          <[content-group:202]>
+          <[content-group:203]>
+          <[content-group:204]>
+        <footer class="mdl-mega-footer">
+            
+            <!-- customer footer -->
+            <[content-group:5000]>
+
+        </footer>
       </div>
     </div>
-
-
-
-
-<div class="pointslocal-secure-body">
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--6-col mdl-typography--text-center">
-
-
-<div class="demo-card-square mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title mdl-card--expand">
-    <h2 class="mdl-card__title-text">Log In</h2>
-  </div>
-  <div class="mdl-card__supporting-text">
-<form action="#">
-  <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" type="text" id="sample1">
-    <label class="mdl-textfield__label" for="sample1">Email</label>
-  </div>
-  <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" type="password" id="sample2">
-    <label class="mdl-textfield__label" for="sample1">Password</label>
-  </div>
-  <button class="mdl-button mdl-js-button mdl-button--primary">
-    Log In
-  </button>
-</form>
-  </div>
-
-</div>
-    </div>
-
-    <div class="mdl-cell mdl-cell--6-col mdl-typography--text-center">
-
-
-<div class="demo-card-square mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title mdl-card--expand">
-    <h2 class="mdl-card__title-text">Register</h2>
-  </div>
-  <div class="mdl-card__supporting-text">
-  <form action="#">
-    <div class="mdl-textfield mdl-js-textfield">
-      <input class="mdl-textfield__input" type="text" id="sample1">
-      <label class="mdl-textfield__label" for="sample1">Email</label>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield">
-      <input class="mdl-textfield__input" type="password" id="sample2">
-      <label class="mdl-textfield__label" for="sample1">Password</label>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield">
-      <input class="mdl-textfield__input" type="password" id="sample3">
-      <label class="mdl-textfield__label" for="sample1">Repeat Password</label>
-    </div>
-    <button class="mdl-button mdl-js-button mdl-button--primary">
-      Register
-    </button>
-  </form>
-  </div>
-
-</div>
-
-    </div>
-  </div>
-</div>
-
-<div>short description</div>
-<div>highlights</div>
-<div>admin</div>
-<div>frontend</div>
-<div>reverse print</div>
-<div>engagement</div>
-<div>footer</div>
-
-  </div>
+    <!-- customer bottom body -->
+    <[content-group:4100]>
 </body>
 </html>

@@ -11,7 +11,63 @@
   font-weight: 600; }
 
 .pointslocal-secure-grid {
-  width: 1200px;
+  width: 1000px;
+}
+
+.pointslocal-secure-form {
+  padding: 10px;
+  width: 100%;
+}
+ .pointslocal-secure-form .mdl-textfield__input {
+  display: inline-block;
+  width: 100%;
+  font-size: 18px;
+  padding: 8px 0;
+ }
+  .pointslocal-secure-form .mdl-textfield__label {
+    padding-left: 8px;
+    padding-top: 4px;
+    font-size: 18px;
+  }
+
+.pointslocal-secure-form select.mdl-textfield__input {
+    height: 36px;
+  }
+.pointslocal-secure-form .mdl-textfield, .pointslocal-secure-form .mdl-textfield__input {
+  width: 100%;
+ }
+
+.pointslocal-step-counter {
+  display: inline-block;
+  width: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  height: 50px;
+  border-radius:25px;
+  background-color: #eee;
+  text-align: center;
+  color: #999;
+  margin-right: 5px;
+}
+.pointslocal-step-description {
+  color: #999;
+}
+.pointslocal-step.active .pointslocal-step-counter {
+  background-color: #090;
+  color: #fff;
+}
+.pointslocal-step.active .pointslocal-step-description {
+  color: #444;
+}
+.pointslocal-step-counter {
+  display: inline-block;
+  width: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  height: 20px;
+  border-radius:10px;
+  background-color: #eee;
+  color: #999;
 }
 
 /*# sourceMappingURL=style.css.map */

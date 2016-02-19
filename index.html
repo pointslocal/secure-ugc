@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/partners/secure/css/new-style.css">
+    <link rel="stylesheet" href="/partners/secure/css/ugc-2016.css">
+    <link rel="stylesheet" href="/partners/<[sitecode]>/css/events-custom.css">
+
 
     <!--
     customer header stuff
@@ -28,6 +30,7 @@
       <div class="mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
           <span class="mdl-layout-title">
+            <a href="<[@publication_logo_link]>"><img src="<[@publication_logo]>" style="height: 34px; vertical-align: text-bottom; opacity: .9" /></a>
             <!-- customer logo -->
             <[content-group:1000]>
           </span>
@@ -37,6 +40,7 @@
           <!-- Navigation -->
           <div class="">
             <nav class="mdl-navigation">
+                <[partner:custom-header]>
                 <!-- customer nav -->
                   <[content-group:1100]>
                 <!-- /customer nav -->
@@ -52,7 +56,7 @@
             <[content-group:1300]>
           </ul>
         </div>
-        <div><[content-group:1400]></div>
+        <[partner:custom-subheader]>
       </div>
 
       <div class="mdl-layout__drawer">

@@ -134,26 +134,33 @@
 
           <!-- component add event -->
           <script>
+          var submissionStep = 0;
           function stepIncrement() {
-
+            submissionStep++;
+            var steps = document.getElementsByClassName('pointslocal-secure-create-step');
+            if (submissionStep > steps.length) {
+              submissionStep = 1;
+            }
+            var target = 'pointslocal-secure-create-step'+submissionStep;
+            console.log(target);
+            for (var i = 0; i < steps.length; i++ ) {
+              steps[i].style.display = 'none';
+            }
+            document.getElementById(target).style.display = 'block';
           }
+
           </script>
               <div class="pointslocal-secure-create-steps">
-                <button onclick="stepIncrement();" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-  Next
-</button>
-                  <div class="pointslocal-secure-create-step" id="1">1</div>
-                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step1">2</div>
-                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step1">3</div>
-                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step1">4</div>
-              </div>
+
+                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step1">
+
           <div class="mdl-grid pointslocal-secure-grid">
 
               <div class="mdl-cell mdl-cell--6-col mdl-typography--display-2">
                 Add an Event
               </div>
               <div class="mdl-cell mdl-cell--6-col mdl-cell--middle mdl-typography--text-right">
-                <button class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                <button onclick="stepIncrement();" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
   Next
 </button>
               </div>
@@ -217,6 +224,14 @@
               </div>
 
           </div>
+
+                  </div>
+                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step2">2</div>
+                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step3">3</div>
+                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step4">4</div>
+              </div>
+              <script>          stepIncrement();</script>
+
 
           <[content-group:200]>
           <[content-group:201]>

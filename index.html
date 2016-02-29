@@ -73,7 +73,7 @@
         <a name="top"></a>
 
 
-          <div class="mdl-grid pointslocal-secure-grid">
+          <div class="mdl-grid pointslocal-secure-grid" style="display: none;">
 
 
               <div class="mdl-cell mdl-cell--5-col" style="box-shadow: 0px 0px 20px rgba(0,0,0,.2);">
@@ -135,10 +135,14 @@
           <!-- component add event -->
           <script>
           var submissionStep = 0;
-          function stepIncrement() {
-            submissionStep++;
+          function stepIncrement(dir) {
+            if (dir === -1) {
+              submissionStep--;
+            } else {
+              submissionStep++;
+            }
             var steps = document.getElementsByClassName('pointslocal-secure-create-step');
-            if (submissionStep > steps.length) {
+            if (submissionStep > steps.length || submissionStep < 1) {
               submissionStep = 1;
             }
             var target = 'pointslocal-secure-create-step'+submissionStep;
@@ -151,19 +155,33 @@
 
           </script>
               <div class="pointslocal-secure-create-steps">
+                  <div class="mdl-grid pointslocal-secure-grid">
+                      <!-- header -->
+                      <div class="mdl-cell mdl-cell--6-col mdl-typography--display-2">
+                        Add an Event
+                      </div>
+                      <div class="mdl-cell mdl-cell--6-col mdl-cell--middle mdl-typography--text-right">
+                        <button onclick="stepIncrement(-1);" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                          Previous
+                        </button>
+                        <button onclick="stepIncrement();" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                          Next
+                        </button>
+                      </div>
+                      <!-- header -->
+                      <div class="mdl-cell mdl-cell--8-col">
+                        right
+                      </div>
+                      <div class="mdl-cell mdl-cell--4-col">
+                        controls
+                      </div>
 
+                  </div>
                   <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step1">
 
           <div class="mdl-grid pointslocal-secure-grid">
 
-              <div class="mdl-cell mdl-cell--6-col mdl-typography--display-2">
-                Add an Event
-              </div>
-              <div class="mdl-cell mdl-cell--6-col mdl-cell--middle mdl-typography--text-right">
-                <button onclick="stepIncrement();" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-  Next
-</button>
-              </div>
+
 
               <div class="mdl-cell mdl-cell--8-col">
 

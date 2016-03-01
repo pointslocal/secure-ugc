@@ -66,6 +66,11 @@ background: #3f51b5;
 .pointslocal-secure-block-header, .pointslocal-secure-block-content {
   padding: 20px;
 }
+.pointslocal-secure-block-content h6 {
+  margin-bottom: 0px;
+  font-weight: 800;
+  color: #444;
+}
 .pointslocal-secure-block-header {
   background-color: #189cce;
   color: #fff;
@@ -124,6 +129,17 @@ background: #3f51b5;
     background-color: #189cce;
 }
 
+.mdl-textfield.is-invalid .mdl-textfield__input {
+    border-color: #333;
+    box-shadow: none;
+}
+.mdl-textfield__error {
+    color: #d5aaaa;
+}
+
+.mdl-textfield.is-invalid .mdl-textfield__label:after {
+    background-color: #d5aaaa;
+}
 
 .pointslocal-secure-create-step {
   display: none;

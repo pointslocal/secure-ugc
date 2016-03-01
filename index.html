@@ -136,14 +136,14 @@
                     <div class="mdl-grid mdl-grid--no-spacing dateModelHTML">
                       <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-textfield mdl-js-textfield">
-                          <input class="mdl-textfield__input" data-required-message="Please select or create a venue" required type="text" id="sample1">
-                          <label class="mdl-textfield__label" for="sample1">Mar 1, 2016</label>
+                          <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Date" data-validate-type="has:value" required type="text" id="sample1">
+                          <label class="mdl-textfield__label" for="sample1">default date</label>
                         </div>
                       </div>
                       <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield">
-                          <input class="mdl-textfield__input" data-required-message="Please select or create a venue" required type="text" id="sample1">
-                          <label class="mdl-textfield__label" for="sample1">12:15 a.m.</label>
+                          <input class="mdl-textfield__input pointslocal-secure-step-validate" required type="text" id="sample1">
+                          <label class="mdl-textfield__label" for="sample1">default time</label>
                         </div>
                       </div>
                       <div class="mdl-cell mdl-cell--1-col mdl-cell--middle mdl-typography--text-center">
@@ -151,8 +151,8 @@
                       </div>
                       <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield">
-                          <input class="mdl-textfield__input" data-required-message="Please select or create a venue" required type="text" id="sample1">
-                          <label class="mdl-textfield__label" for="sample1">1:15 a.m.</label>
+                          <input class="mdl-textfield__input" type="text" id="sample1">
+                          <label class="mdl-textfield__label" for="sample1">default time+1</label>
                         </div>
                       </div>
                       <div class="mdl-cell mdl-cell--1-col mdl-cell--middle mdl-typography--text-center">
@@ -175,24 +175,44 @@
             rcpt.appendChild(dateModel)
           }
 
+          function dismissToast() {
+
+          }
+
           function validate(step) {
-            var notification = document.querySelector('.mdl-js-snackbar');
-            var data = {
-              message: 'Please correct errors or omissions in your form',
-              actionHandler: function(event) {},
-              actionText: 'OK',
-              timeout: 3000
-            };
-            notification.MaterialSnackbar.showSnackbar(data);
+
+            var errors = [];
+            var items = document.querySelectorAll('#pointslocal-secure-create-step'+step+' .pointslocal-secure-step-validate');
+            for(var i = 0; i < items.length; i++) {
+              var validateType = items[i].getAttributeNode('data-validate-type').value;
+              var validateName = items[i].getAttributeNode('data-validate-description').value;
+              var value = items[i].value;
+              switch(validateType) {
+                case 'has:value':
+                  if (!value || value === '') {
+                    errors.push(validateName);
+                  }
+                break;
+              }
+            }
+            if (errors.length > 0) {
+              var notification = document.querySelector('.mdl-js-snackbar');
+              var data = {
+                message: 'Please check the following fields for errors: '+errors.join(','),
+                actionHandler: function(event) {dismissToast();},
+                actionText: 'OK',
+                timeout: 3000
+              };
+              notification.MaterialSnackbar.showSnackbar(data);
+              return false;
+            } else {
+              return true;
+            }
+
           }
 
           var submissionStep = 0;
           function stepIncrement(dir,init) {
-            if (dir === -1) {
-              submissionStep--;
-            } else {
-              submissionStep++;
-            }
             if (init === true) {
               if (validate(submissionStep)) {
 
@@ -200,6 +220,12 @@
                 return false;
               }
             }
+            if (dir === -1) {
+              submissionStep--;
+            } else {
+              submissionStep++;
+            }
+
             var steps = document.getElementsByClassName('pointslocal-secure-create-step');
             if (submissionStep > steps.length || submissionStep < 1) {
               submissionStep = 1;
@@ -253,26 +279,37 @@
                     Use the following form to submit your event to <[@sitename]>
                   </div>
                   <div class="pointslocal-secure-block-content">
+                  <h6 >Title &amp; Venue</h6>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <input class="mdl-textfield__input" data-required-message="Please enter a title" required type="text" id="sample1">
-                      <label class="mdl-textfield__label" for="sample1">* Event Title</label>
+                      <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Title" data-validate-type="has:value" required type="text" id="sample1">
+                      <label class="mdl-textfield__label" for="sample1">Event Title</label>
+                      <span class="mdl-textfield__error">Required</span>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <input class="mdl-textfield__input" data-required-message="Please select or create a venue" required type="text" id="sample1">
-                      <label class="mdl-textfield__label" for="sample1">* Event Venue</label>
+                      <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Venue" data-validate-type="has:value" required type="text" id="sample1">
+                      <label class="mdl-textfield__label" for="sample1">Event Venue</label>
+                      <span class="mdl-textfield__error">Required</span>
                     </div>
 
-                    <h6>Dates</h6>
+                    <h6>Dates &amp; Times:</h6>
                     <div id="pointslocal-secure-create-date-container"></div>
 
                     <a onclick="addDate('#pointslocal-secure-create-date-container');">Add More</a>
+                    <script>addDate('#pointslocal-secure-create-date-container');</script>
+
+                    <h6>Description:</h6>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <textarea class="mdl-textfield__input" rows="8" id="cat-select"></textarea>
-                      <label class="mdl-textfield__label" for="cat-select">* Event Description</label>
+                      <textarea class="mdl-textfield__input" required rows="8" id="cat-select"></textarea>
+                      <label class="mdl-textfield__label" for="cat-select">* Event Description - Tell us about your event</label>
+                      <span class="mdl-textfield__error">Required</span>
                     </div>
+
+
+                    <h6>Categories:</h6>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <select class="mdl-textfield__input" id="cat-select"><option></option></select>
-                      <label class="mdl-textfield__label" for="cat-select">* Event Category</label>
+                      <select class="mdl-textfield__input" data-validate-description="Venue" data-validate-type="not:value" data-validate-value="0" required id="cat-selectx"><option value="0"></option></select>
+                      <label class="mdl-textfield__label" for="cat-selectx">Event Category</label>
+                      <span class="mdl-textfield__error">Select at least 1 category</span>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield">
                       <select class="mdl-textfield__input" id="cat-select"><option></option></select>
@@ -283,7 +320,13 @@
 
 
                   </div>
-                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step2">2</div>
+                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step2">
+                    <div class="pointslocal-secure-block-header">
+                      Tell us more about [title]
+                    </div>
+
+
+                  </div>
 
                   <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step3">3</div>
                   <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step4">4</div>

@@ -46,7 +46,7 @@ background: #3f51b5;
 }
 
 .pointslocal-secure-form {
-  padding: 10px;
+
   width: calc(100% - 25px);
 }
  .pointslocal-secure-form .mdl-textfield__input {
@@ -60,7 +60,10 @@ background: #3f51b5;
     padding-top: 4px;
     font-size: 18px;
   }
-
+.pointslocal-secure-block-header {
+  background-color: #189cce;
+  color: #fff;
+}
 .pointslocal-secure-form select.mdl-textfield__input {
     height: 36px;
   }

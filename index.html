@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/ugc-2016.css">
     <link rel="stylesheet" href="/partners/<[sitecode]>/css/events-custom.css">
-    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
     <[partner:partner-header-includes]>
 
     <!--
@@ -133,17 +133,20 @@
           </div>
 
         <div id="dateModel" style="display:none;">
+
                     <div class="mdl-grid mdl-grid--no-spacing dateModelHTML">
                       <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-textfield mdl-js-textfield">
-                          <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Date" data-validate-type="has:value" required type="text" id="sample1">
-                          <label class="mdl-textfield__label" for="sample1">default date</label>
+                          <input class="mdl-textfield__input pointslocal-secure-step-validate" pattern="\d\d-\d\d-\d\d\d\d" data-validate-description="Date" data-validate-type="has:value" required type="text" id="sample1">
+                          <label class="mdl-textfield__label" for="sample1">01-01-2016</label>
+                          <span class="mdl-textfield__error">Match Format: 00-00-0000</span>
                         </div>
                       </div>
                       <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield">
-                          <input class="mdl-textfield__input pointslocal-secure-step-validate" required type="text" id="sample1">
+                          <input class="mdl-textfield__input pointslocal-secure-step-validate" pattern="\d+:\d\d (AM|PM)" data-validate-description="Time" data-validate-type="has:value" required type="text" id="sample1">
                           <label class="mdl-textfield__label" for="sample1">default time</label>
+                          <span class="mdl-textfield__error">Match Format: 00:00 AM</span>
                         </div>
                       </div>
                       <div class="mdl-cell mdl-cell--1-col mdl-cell--middle mdl-typography--text-center">
@@ -156,9 +159,10 @@
                         </div>
                       </div>
                       <div class="mdl-cell mdl-cell--1-col mdl-cell--middle mdl-typography--text-center">
-                        <i class="material-icons">clear</i>
+                        <div class="pointslocal-secure-step-delete"><i onclick="findAncestor(this,'dateModelHTML').remove();" class="material-icons">clear</i></div>
                       </div>
                     </div>
+
         </div>
 
         <div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
@@ -167,12 +171,29 @@
         </div>
           <!-- component add event -->
           <script>
+          function findAncestor (el, cls) {
+              while ((el = el.parentElement) && !el.classList.contains(cls));
+              return el;
+          }
+          function addDate(el,init) {
 
-          function addDate(el) {
             var model = document.querySelector('#dateModel .dateModelHTML');
             var dateModel = model.cloneNode(true);
+            var dateModelUp = dateModel.querySelectorAll('.is-upgraded');
+            var dateModelUp2 = dateModel.querySelectorAll('[data-upgraded]');
+            for (var i = 0; i < dateModelUp.length; i++) {
+              dateModelUp[i].className = dateModelUp[i].className.replace(/is-upgraded/,'');
+            }
+            for (var i = 0; i < dateModelUp2.length; i++) {
+              dateModelUp2[i].removeAttribute('data-upgraded');
+            }
             var rcpt = document.querySelector(el);
+            if (init) {
+              dateModel.querySelector('.pointslocal-secure-step-delete').innerHTML = '';
+            }
             rcpt.appendChild(dateModel)
+            componentHandler.upgradeDom();
+            componentHandler.upgradeAllRegistered();
           }
 
           function dismissToast() {
@@ -189,10 +210,17 @@
               var value = items[i].value;
               switch(validateType) {
                 case 'has:value':
+                  console.log(value);
                   if (!value || value === '') {
                     errors.push(validateName);
                   }
                 break;
+                case 'not:value':
+                  var validateValue = items[i].getAttributeNode('data-validate-value').value;
+                  if (value == validateValue) {
+                    errors.push(validateName);
+                  }
+
               }
             }
             if (errors.length > 0) {
@@ -294,8 +322,8 @@
                     <h6>Dates &amp; Times:</h6>
                     <div id="pointslocal-secure-create-date-container"></div>
 
-                    <a onclick="addDate('#pointslocal-secure-create-date-container');">Add More</a>
-                    <script>addDate('#pointslocal-secure-create-date-container');</script>
+                    <a onclick="addDate('#pointslocal-secure-create-date-container',false);">Add More</a>
+                    <script>addDate('#pointslocal-secure-create-date-container',true);componentHandler.upgradeDom();</script>
 
                     <h6>Description:</h6>
                     <div class="mdl-textfield mdl-js-textfield">
@@ -307,9 +335,8 @@
 
                     <h6>Categories:</h6>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <select class="mdl-textfield__input" data-validate-description="Venue" data-validate-type="not:value" data-validate-value="0" required id="cat-selectx"><option value="0"></option></select>
-                      <label class="mdl-textfield__label" for="cat-selectx">Event Category</label>
-                      <span class="mdl-textfield__error">Select at least 1 category</span>
+                      <select class="mdl-textfield__input pointslocal-secure-step-validate" id="cat-select" data-validate-description="Category" data-validate-type="has:value" required><option></option><option>foo</option></select>
+                      <label class="mdl-textfield__label" for="cat-select">Category</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield">
                       <select class="mdl-textfield__input" id="cat-select"><option></option></select>

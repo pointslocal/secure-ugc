@@ -120,7 +120,9 @@ background: #3f51b5;
 .mdl-button.mdl-button--colored {
     background-color: #189cce;
 }
-
+.mdl-button.mdl-button--colored:hover {
+    background-color: #189cce;
+}
 
 
 .pointslocal-secure-create-step {

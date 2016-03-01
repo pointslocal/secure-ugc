@@ -73,6 +73,8 @@
         <a name="top"></a>
 
 
+
+
           <div class="mdl-grid pointslocal-secure-grid" style="display: none;">
 
 
@@ -130,16 +132,73 @@
 
           </div>
 
+        <div id="dateModel" style="display:none;">
+                    <div class="mdl-grid mdl-grid--no-spacing dateModelHTML">
+                      <div class="mdl-cell mdl-cell--4-col">
+                        <div class="mdl-textfield mdl-js-textfield">
+                          <input class="mdl-textfield__input" data-required-message="Please select or create a venue" required type="text" id="sample1">
+                          <label class="mdl-textfield__label" for="sample1">Mar 1, 2016</label>
+                        </div>
+                      </div>
+                      <div class="mdl-cell mdl-cell--3-col">
+                        <div class="mdl-textfield mdl-js-textfield">
+                          <input class="mdl-textfield__input" data-required-message="Please select or create a venue" required type="text" id="sample1">
+                          <label class="mdl-textfield__label" for="sample1">12:15 a.m.</label>
+                        </div>
+                      </div>
+                      <div class="mdl-cell mdl-cell--1-col mdl-cell--middle mdl-typography--text-center">
+                        to
+                      </div>
+                      <div class="mdl-cell mdl-cell--3-col">
+                        <div class="mdl-textfield mdl-js-textfield">
+                          <input class="mdl-textfield__input" data-required-message="Please select or create a venue" required type="text" id="sample1">
+                          <label class="mdl-textfield__label" for="sample1">1:15 a.m.</label>
+                        </div>
+                      </div>
+                      <div class="mdl-cell mdl-cell--1-col mdl-cell--middle mdl-typography--text-center">
+                        <i class="material-icons">clear</i>
+                      </div>
+                    </div>
+        </div>
 
-
+        <div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
+          <div class="mdl-snackbar__text"></div>
+          <button class="mdl-snackbar__action" type="button"></button>
+        </div>
           <!-- component add event -->
           <script>
+
+          function addDate(el) {
+            var model = document.querySelector('#dateModel .dateModelHTML');
+            var dateModel = model.cloneNode(true);
+            var rcpt = document.querySelector(el);
+            rcpt.appendChild(dateModel)
+          }
+
+          function validate(step) {
+            var notification = document.querySelector('.mdl-js-snackbar');
+            var data = {
+              message: 'Please correct errors or omissions in your form',
+              actionHandler: function(event) {},
+              actionText: 'OK',
+              timeout: 3000
+            };
+            notification.MaterialSnackbar.showSnackbar(data);
+          }
+
           var submissionStep = 0;
-          function stepIncrement(dir) {
+          function stepIncrement(dir,init) {
             if (dir === -1) {
               submissionStep--;
             } else {
               submissionStep++;
+            }
+            if (init === true) {
+              if (validate(submissionStep)) {
+
+              } else {
+                return false;
+              }
             }
             var steps = document.getElementsByClassName('pointslocal-secure-create-step');
             if (submissionStep > steps.length || submissionStep < 1) {
@@ -171,7 +230,7 @@
                         <button onclick="stepIncrement(-1);" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                           Previous
                         </button>
-                        <button onclick="stepIncrement();" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        <button onclick="stepIncrement(1,true);" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                           Next
                         </button>
                       </div>
@@ -195,19 +254,18 @@
                   </div>
                   <div class="pointslocal-secure-block-content">
                     <div class="mdl-textfield mdl-js-textfield">
-                      <input class="mdl-textfield__input" required type="text" id="sample1">
+                      <input class="mdl-textfield__input" data-required-message="Please enter a title" required type="text" id="sample1">
                       <label class="mdl-textfield__label" for="sample1">* Event Title</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <input class="mdl-textfield__input" required type="text" id="sample1">
+                      <input class="mdl-textfield__input" data-required-message="Please select or create a venue" required type="text" id="sample1">
                       <label class="mdl-textfield__label" for="sample1">* Event Venue</label>
                     </div>
 
                     <h6>Dates</h6>
-                    <div class="mdl-grid">
+                    <div id="pointslocal-secure-create-date-container"></div>
 
-                    </div>
-                    <a href="">Add More</a>
+                    <a onclick="addDate('#pointslocal-secure-create-date-container');">Add More</a>
                     <div class="mdl-textfield mdl-js-textfield">
                       <textarea class="mdl-textfield__input" rows="8" id="cat-select"></textarea>
                       <label class="mdl-textfield__label" for="cat-select">* Event Description</label>
@@ -230,9 +288,11 @@
                   <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step3">3</div>
                   <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step4">4</div>
                   </form>
-                  <button class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-  Next
-</button>
+                  <div class="pointslocal-secure-block-content">
+                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                      Next
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -258,7 +318,7 @@
 
 
               </div>
-              <script>          stepIncrement();</script>
+              <script>          stepIncrement(0,false);</script>
 
 
           <[content-group:200]>

@@ -45,9 +45,12 @@ background: #3f51b5;
     color: #fff;
 }
 
-.pointslocal-secure-form {
+.mdl-textfield__label:after {
+    background-color: #189cce;
+}
 
-  width: calc(100% - 25px);
+.pointslocal-secure-form {
+  width: calc(100%);
 }
  .pointslocal-secure-form .mdl-textfield__input {
   display: inline-block;
@@ -60,9 +63,17 @@ background: #3f51b5;
     padding-top: 4px;
     font-size: 18px;
   }
+.pointslocal-secure-block-header, .pointslocal-secure-block-content {
+  padding: 20px;
+}
 .pointslocal-secure-block-header {
   background-color: #189cce;
   color: #fff;
+}
+.pointslocal-secure-block-header {
+
+  font-size: 20px;
+  font-weight: 100;
 }
 .pointslocal-secure-form select.mdl-textfield__input {
     height: 36px;

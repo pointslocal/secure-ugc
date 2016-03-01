@@ -149,6 +149,13 @@
             console.log(target);
             for (var i = 0; i < steps.length; i++ ) {
               steps[i].style.display = 'none';
+              var descID = 'pointslocal-step-description'+(i+1);
+              var el = document.getElementById(descID);
+              if (i < submissionStep) {
+                el.classList.add('active');
+              } else {
+                el.classList.remove('active');
+              }
             }
             document.getElementById(target).style.display = 'block';
           }
@@ -231,17 +238,17 @@
 
               <div class="mdl-cell mdl-cell--4-col">
                 <div class="mdl-grid mdl-shadow--2dp">
-                  <div class="mdl-cell mdl-cell--12-col pointslocal-step active">
+                  <div class="mdl-cell mdl-cell--12-col pointslocal-step active" id="pointslocal-step-description1" >
                     <div class="pointslocal-step-counter"><span>1</span> </div> <span class="pointslocal-step-description">Add basic event info</span>
                   </div>
-                  <div class="mdl-cell mdl-cell--12-col pointslocal-step">
+                  <div class="mdl-cell mdl-cell--12-col pointslocal-step" id="pointslocal-step-description2" >
                     <div class="pointslocal-step-counter"><span>2</span> </div> <span class="pointslocal-step-description">Add images, media</span>
                   </div>
-                  <div class="mdl-cell mdl-cell--12-col pointslocal-step">
-                    <div class="pointslocal-step-counter"><span>3</span> </div> <span class="pointslocal-step-description">Review event</span>
+                  <div class="mdl-cell mdl-cell--12-col pointslocal-step" id="pointslocal-step-description3">
+                    <div class="pointslocal-step-counter"><span>3</span> </div> <span  class="pointslocal-step-description">Review event</span>
                   </div>
-                  <div class="mdl-cell mdl-cell--12-col pointslocal-step">
-                    <div class="pointslocal-step-counter"><span>4</span> </div> <span class="pointslocal-step-description">Submit</span>
+                  <div class="mdl-cell mdl-cell--12-col pointslocal-step" id="pointslocal-step-description4">
+                    <div class="pointslocal-step-counter"><span>4</span> </div> <span  class="pointslocal-step-description">Submit</span>
                   </div>
                 </div>
               </div>

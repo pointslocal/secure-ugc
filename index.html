@@ -201,7 +201,7 @@
           }
 
           function validate(step) {
-
+            return true;
             var errors = [];
             var items = document.querySelectorAll('#pointslocal-secure-create-step'+step+' .pointslocal-secure-step-validate');
             for(var i = 0; i < items.length; i++) {
@@ -351,11 +351,55 @@
                     <div class="pointslocal-secure-block-header">
                       Tell us more about [title]
                     </div>
+                    <div class="pointslocal-secure-block-content">
+                      <h6 >Add an Image</h6>
+                      <div ><img id="pointslocal-secure-form-image-preview" /></div>
+                      <div class="pointslocal-secure-form-image-upload-container"><div class="pointslocal-secure-form-image-upload-container-tip"><i class="material-icons">linked camera</i></div><input type="file" id="pointslocal-secure-form-image-upload" /></div>
 
+                      <h6 >More Info</h6>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Venue" data-validate-type="has:value" required type="text" id="sample1">
+                        <label class="mdl-textfield__label" for="sample1">Event Web Site</label>
+                      </div>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Venue" data-validate-type="has:value" required type="text" id="sample1">
+                        <label class="mdl-textfield__label" for="sample1">Ticket Web Site</label>
+                      </div>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Venue" data-validate-type="has:value" required type="text" id="sample1">
+                        <label class="mdl-textfield__label" for="sample1">Contact Email</label>
+                      </div>
+                      <div class="mdl-textfield mdl-js-textfield">
+                        <select class="mdl-textfield__input" id="cat-select"><option></option></select>
+                        <label class="mdl-textfield__label" for="cat-select">Age Range</label>
+                      </div>
+                    </div>
 
                   </div>
 
-                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step3">3</div>
+                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step3">
+                    <div class="pointslocal-secure-block-header">
+                      Review [title]
+                    </div>
+                    <div class="pointslocal-secure-block-content">
+
+                      <div class="mdl-grid  pointslocal-list-event">
+                        <div class="mdl-cell--3-col mdl-cell--1-col-phone mdl-cell--2-col-tablet"><img ></div>
+
+                        <div class="mdl-cell--9-col mdl-cell--3-col-phone mdl-cell--6-col-tablet">
+                          <div class="pointslocal-event-preview">
+
+                            <div class="pointslocal-list-event-header"><a href="/events?categories=23">[category]</a></div>
+                            <h2><a href="http://events.accessatlanta.com/event/56ccd5d025259">[title]</a></h2>
+                            <div class="pointslocal-list-event-meta"><span><i class="ion-calendar"></i> [date]</span> <span><i class="ion-clock"></i> [time]</span> <span><a href="#">[venue name]</a></span> </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
                   <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step4">4</div>
                   </form>
                   <div class="pointslocal-secure-block-content">
@@ -390,7 +434,19 @@
               </div>
               <script>          stepIncrement(0,false);</script>
 
+<script>
+document.getElementById("pointslocal-secure-form-image-upload").onchange = function () {
+    var reader = new FileReader();
 
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("pointslocal-secure-form-image-preview").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
+</script>
           <[content-group:200]>
           <[content-group:201]>
           <[content-group:202]>

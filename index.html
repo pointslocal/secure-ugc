@@ -298,8 +298,18 @@
             if (submissionStep > steps.length || submissionStep < 1) {
               submissionStep = 1;
             }
+            if (submissionStep === steps.length) {
+              $('.pointslocal-secure-create-step-next').attr("disabled","disabled");
+            } else {
+              $('.pointslocal-secure-create-step-next').removeAttr('disabled');
+            }
+            if (submissionStep === 1) {
+              $('.pointslocal-secure-create-step-prev').attr("disabled","disabled");
+            } else {
+              $('.pointslocal-secure-create-step-prev').removeAttr('disabled');
+            }
             var target = 'pointslocal-secure-create-step'+submissionStep;
-            console.log(target);
+
             for (var i = 0; i < steps.length; i++ ) {
               steps[i].style.display = 'none';
               var descID = 'pointslocal-step-description'+(i+1);
@@ -321,10 +331,10 @@
                         Add an Event
                       </div>
                       <div class="mdl-cell mdl-cell--6-col mdl-cell--middle mdl-typography--text-right">
-                        <button onclick="stepIncrement(-1);" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        <button onclick="stepIncrement(-1);" class="pointslocal-secure-create-step-prev mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                           Previous
                         </button>
-                        <button onclick="stepIncrement(1,true);" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        <button onclick="stepIncrement(1,true);" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect pointslocal-secure-create-step-next">
                           Next
                         </button>
                       </div>
@@ -395,7 +405,7 @@
                       <h6>Add Image</h6>
 
                       <div class="pointslocal-secure-form-image-upload-container"><div class="pointslocal-secure-form-image-upload-container-tip"><img id="pointslocal-secure-form-image-preview" /></div><input type="file" id="pointslocal-secure-form-image-upload" /></div>
-<div class="pointslocal-secure-form-image-upload-container-tip"><i class="material-icons">linked camera</i> Upload</div>
+                      <label class="pointslocal-secure-form-tooltip">Click The Box Above To Upload Or Change Image</label>
                       <h6 >More Info</h6>
                       <div class="mdl-textfield mdl-js-textfield">
                         <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Venue" data-validate-type="has:value" required type="text" id="sample1">
@@ -441,15 +451,10 @@
 
                     </div>
                   </div>
-                  <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step4">
-                    <div class="pointslocal-secure-block-header">
-                      <h2>Make Your Event Stand Out!</h2>
-                    </div>
 
-                  </div>
                   </form>
                   <div class="pointslocal-secure-block-content">
-                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                    <button onclick="stepIncrement(1,true);" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                       Next
                     </button>
                   </div>
@@ -467,9 +472,7 @@
                   <div class="mdl-cell mdl-cell--12-col pointslocal-step" id="pointslocal-step-description3">
                     <div class="pointslocal-step-counter"><span>3</span> </div> <span  class="pointslocal-step-description">Review event</span>
                   </div>
-                  <div class="mdl-cell mdl-cell--12-col pointslocal-step" id="pointslocal-step-description4">
-                    <div class="pointslocal-step-counter"><span>4</span> </div> <span  class="pointslocal-step-description">Submit</span>
-                  </div>
+
                 </div>
               </div>
 

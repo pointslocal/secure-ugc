@@ -140,14 +140,14 @@
                     <div class="mdl-grid mdl-grid--no-spacing dateModelHTML">
                       <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-textfield mdl-js-textfield">
-                          <input class="mdl-textfield__input pointslocal-secure-step-validate pointslocal-secure-step-datepicker" onchange="updatePreviews(this,'text','.pointslocal-event-preview-date');" pattern="\d\d-\d\d-\d\d\d\d" data-validate-description="Date" data-validate-type="has:value" required type="text" id="sample1">
+                          <input class="mdl-textfield__input pointslocal-secure-step-validate pointslocal-secure-step-datepicker" onchange="updatePreviews(this,'text','.pointslocal-event-preview-date');" pattern="\d\d-\d\d-\d\d\d\d" data-validate-description="Date" data-validate-type="has:value"  type="text" id="sample1">
                           <label class="mdl-textfield__label" for="sample1">01-01-2016</label>
                           <span class="mdl-textfield__error">Match Format: 00-00-0000</span>
                         </div>
                       </div>
                       <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield">
-                          <input class="mdl-textfield__input pointslocal-secure-step-validate pointslocal-secure-step-timepicker" onchange="updatePreviews(this,'text','.pointslocal-event-preview-time');" pattern="\d+:\d\d (AM|PM)" data-validate-description="Time" data-validate-type="has:value" required type="text" id="sample1">
+                          <input class="mdl-textfield__input pointslocal-secure-step-validate pointslocal-secure-step-timepicker pointslocal-secure-step-start-time" onchange="updatePreviews(this,'text','.pointslocal-event-preview-time');" pattern="\d+:\d\d (AM|PM)" data-validate-description="Time" data-validate-type="has:value"  type="text" id="sample1">
                           <label class="mdl-textfield__label" for="sample1">default time</label>
                           <span class="mdl-textfield__error">Match Format: 00:00 AM</span>
                         </div>
@@ -157,7 +157,7 @@
                       </div>
                       <div class="mdl-cell mdl-cell--3-col">
                         <div class="mdl-textfield mdl-js-textfield">
-                          <input class="mdl-textfield__input pointslocal-secure-step-timepicker" type="text" id="sample1">
+                          <input class="mdl-textfield__input pointslocal-secure-step-timepicker pointslocal-secure-step-end-time" type="text" id="sample1">
                           <label class="mdl-textfield__label" for="sample1">default time+1</label>
                         </div>
                       </div>
@@ -354,7 +354,14 @@
             }
             document.getElementById(target).style.display = 'block';
           }
-
+          function compileForm() {
+            var dates = [];
+            $('#pointslocal-secure-create-date-container .dateModelHTML').each(function() {
+              var date = { date: $(this).find('.pointslocal-secure-step-datepicker').val(), stime: $(this).find('.pointslocal-secure-step-start-time').val(), etime: $(this).find('.pointslocal-secure-step-end-time').val() }
+              dates.push(date);
+            });
+            $('#date_info').val(JSON.stringify(dates));
+          }
           </script>
               <div class="pointslocal-secure-create-steps">
                   <div class="mdl-grid pointslocal-secure-grid">
@@ -383,7 +390,8 @@
 
 
                 <div class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                  <form action="#" class="pointslocal-secure-form">
+                  <form action="" class="pointslocal-secure-form">
+                  <input type="hidden" name="date_info" value="" id="date_info" />
                   <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step1">
                   <div class="pointslocal-secure-block-header">
                     Use the following form to submit your event to <[@sitename]>
@@ -391,28 +399,28 @@
                   <div class="pointslocal-secure-block-content">
                   <h6 >Title &amp; Venue</h6>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <input class="mdl-textfield__input pointslocal-secure-step-validate" onkey="updatePreviews(this,'text','.pointslocal-event-preview-venue');" data-validate-description="Title" data-validate-type="has:value" required type="text" onkeyup="updatePreviews(this,'text','.pointslocal-event-preview-title');" id="sample1">
+                      <input name="event_title" class="mdl-textfield__input pointslocal-secure-step-validate" onkey="updatePreviews(this,'text','.pointslocal-event-preview-venue');" data-validate-description="Title" data-validate-type="has:value"  type="text" onkeyup="updatePreviews(this,'text','.pointslocal-event-preview-title');" id="sample1">
                       <label class="mdl-textfield__label" for="sample1">Event Title</label>
                       <span class="mdl-textfield__error">Required</span>
                     </div>
                     <input type="hidden" name="event_venue_id" id="event_venue_id" value="" />
                     <div class="mdl-textfield mdl-js-textfield">
-                      <input class="mdl-textfield__input pointslocal-secure-step-validate pointslocal-secure-autofill-venue" data-validate-description="Venue" data-validate-type="has:value" required type="text" onkeyup="updatePreviews(this,'text','.pointslocal-event-preview-venue')" id="sample1">
+                      <input name="event_venue_name" class="mdl-textfield__input pointslocal-secure-step-validate pointslocal-secure-autofill-venue" data-validate-description="Venue" data-validate-type="has:value"  type="text" onkeyup="updatePreviews(this,'text','.pointslocal-event-preview-venue')" id="sample1">
                       <label class="mdl-textfield__label" for="sample1">Event Venue</label>
                       <span class="mdl-textfield__error">Required</span>
                     </div>
                     <ul id="pointslocal-secure-event-venue-suggestions" class="pointslocal-secure-suggestions"></ul>
                     <div id="pointslocal-secure-event-venue-details" style="display: none;">
                       <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" data-validate-description="Venue" id="sample1">
+                        <input class="mdl-textfield__input" name="event_venue_address" data-validate-description="Venue" id="sample1">
                         <label class="mdl-textfield__label" for="sample1">Venue Address (optional)</label>
                       </div>
                       <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" id="sample1">
+                        <input class="mdl-textfield__input" name="event_venue_phone" id="sample1">
                         <label class="mdl-textfield__label" for="sample1">Venue Phone (optional)</label>
                       </div>
                       <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" id="sample1">
+                        <input class="mdl-textfield__input" name="event_venue_url" id="sample1">
                         <label class="mdl-textfield__label" for="sample1">Venue URL (optional)</label>
                       </div>
                     </div>
@@ -425,7 +433,7 @@
 
                     <h6>Description:</h6>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <textarea class="mdl-textfield__input" onkeyup="updatePreviews(this,'textarea','.pointslocal-event-preview-text');" required rows="8" id="cat-select"></textarea>
+                      <textarea class="mdl-textfield__input" onkeyup="updatePreviews(this,'textarea','.pointslocal-event-preview-text');"  rows="8" id="cat-select"></textarea>
                       <label class="mdl-textfield__label" for="cat-select">* Event Description - Tell us about your event</label>
                       <span class="mdl-textfield__error">Required</span>
                     </div>
@@ -433,15 +441,19 @@
 
                     <h6>Categories:</h6>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <select class="mdl-textfield__input pointslocal-secure-step-validate" id="cat-select" data-validate-description="Category" data-validate-type="has:value" required onchange="updatePreviews(this,'select','.pointslocal-event-preview-category');"><option></option><option>foo</option></select>
+                      <select name="event_venue_category_id" class="mdl-textfield__input pointslocal-secure-step-validate" id="cat-select" data-validate-description="Category" data-validate-type="has:value"  onchange="updatePreviews(this,'select','.pointslocal-event-preview-category');"><option></option><option>foo</option></select>
                       <label class="mdl-textfield__label" for="cat-select">Category</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield">
-                      <select class="mdl-textfield__input" id="cat-select"><option></option></select>
+                      <select class="mdl-textfield__input" name="event_venue_secondary_category" id="cat-select"><option></option></select>
                       <label class="mdl-textfield__label" for="cat-select">Second Category</label>
                     </div>
                   </div>
-
+                  <div class="pointslocal-secure-block-content">
+                    <button onclick="stepIncrement(1,true);return false;" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect pointslocal-secure-create-step-next">
+                      Next
+                    </button>
+                  </div>
 
 
                   </div>
@@ -456,23 +468,27 @@
                       <label class="pointslocal-secure-form-tooltip">Click The Box Above To Upload Or Change Image</label>
                       <h6 >More Info</h6>
                       <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Venue" data-validate-type="has:value" required type="text" id="sample1">
+                        <input class="mdl-textfield__input" name="event_url" >
                         <label class="mdl-textfield__label" for="sample1">Event Web Site</label>
                       </div>
                       <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Venue" data-validate-type="has:value" required type="text" id="sample1">
+                        <input class="mdl-textfield__input" name="event_ticketurl" id="sample1">
                         <label class="mdl-textfield__label" for="sample1">Ticket Web Site</label>
                       </div>
                       <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input pointslocal-secure-step-validate" data-validate-description="Venue" data-validate-type="has:value" required type="text" id="sample1">
+                        <input class="mdl-textfield__input" name="event_email" id="sample1">
                         <label class="mdl-textfield__label" for="sample1">Contact Email</label>
                       </div>
                       <div class="mdl-textfield mdl-js-textfield">
-                        <select class="mdl-textfield__input" id="cat-select"><option></option></select>
+                        <select class="mdl-textfield__input" name="event_age_range" id="cat-select"><option></option></select>
                         <label class="mdl-textfield__label" for="cat-select">Age Range</label>
                       </div>
                     </div>
-
+                    <div class="pointslocal-secure-block-content">
+                      <button onclick="stepIncrement(1,true);return false;" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect pointslocal-secure-create-step-next">
+                        Next
+                      </button>
+                    </div>
                   </div>
 
                   <div class="pointslocal-secure-create-step" id="pointslocal-secure-create-step3">
@@ -498,14 +514,15 @@
 
 
                     </div>
+                    <div class="pointslocal-secure-block-content">
+                      <button onclick="stepIncrement(1,true);compileForm();return false;" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        Submit Event
+                      </button>
+                    </div>
                   </div>
 
                   </form>
-                  <div class="pointslocal-secure-block-content">
-                    <button onclick="stepIncrement(1,true);" class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                      Next
-                    </button>
-                  </div>
+
                 </div>
               </div>
 
@@ -518,7 +535,7 @@
                     <div class="pointslocal-step-counter"><span>2</span> </div> <span class="pointslocal-step-description">Add images, media</span>
                   </div>
                   <div class="mdl-cell mdl-cell--12-col pointslocal-step" id="pointslocal-step-description3">
-                    <div class="pointslocal-step-counter"><span>3</span> </div> <span  class="pointslocal-step-description">Review event</span>
+                    <div class="pointslocal-step-counter"><span>3</span> </div> <span  class="pointslocal-step-description">Review and submit event</span>
                   </div>
 
                 </div>

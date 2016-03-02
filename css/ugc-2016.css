@@ -29,6 +29,7 @@ ul.pointslocal-secure-suggestions {
   overflow: scroll;
   margin: 0px;
   padding: 0px;
+  display: none;
 }
 ul.pointslocal-secure-suggestions li {
   list-style: none;
@@ -82,7 +83,9 @@ background: #3f51b5;
 #pointslocal-secure-form-image-preview {
   max-width: 300px;
 }
-
+#pointslocal-secure-form-image-preview img {
+  max-width: 100%;
+}
 .pointslocal-secure-form-image-upload-container {
   border: 4px dotted #999;
   text-align: center;

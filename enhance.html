@@ -79,6 +79,26 @@
 
 
 
+
+        <div id="dateModel" style="display:none;">
+
+                    <div class="mdl-grid mdl-grid--no-spacing dateModelHTML">
+                      <div class="mdl-cell mdl-cell--4-col">
+                        <div class="mdl-textfield mdl-js-textfield">
+                          <input class="mdl-textfield__input pointslocal-secure-step-validate pointslocal-secure-step-datepicker" onchange="updatePreviews(this,'text','.pointslocal-event-preview-date');" pattern="\d\d-\d\d-\d\d\d\d" data-validate-description="Date" data-validate-type="has:value"  type="text" id="sample1">
+                          <label class="mdl-textfield__label" for="sample1">01-01-2016</label>
+                          <span class="mdl-textfield__error">Match Format: 00-00-0000</span>
+                        </div>
+                      </div>
+
+
+                      <div class="mdl-cell mdl-cell--1-col mdl-cell--middle mdl-typography--text-center">
+                        <div class="pointslocal-secure-step-delete"><i onclick="findAncestor(this,'dateModelHTML').remove();" class="material-icons">clear</i></div>
+                      </div>
+                    </div>
+
+        </div>
+
         <div class="pointslocal-secure-create-steps">
 
 
@@ -152,17 +172,85 @@ will rotate in our featured events position making sure it gets the exposure you
                       <h3>1. Select Dates</h3>
                     </div>
                     <div class="mdl-cell mdl-cell--8-col">
-                      durr 
+                      <div id="pointslocal-secure-create-date-container"></div>
+                      <a onclick="addDate('#pointslocal-secure-create-date-container',false);">Add More</a>
+                      <script>addDate('#pointslocal-secure-create-date-container',true);componentHandler.upgradeDom();</script>
                     </div>
 
                     <div class="mdl-cell mdl-cell--4-col">
                       <h3>2. Payment</h3>
                     </div>
-                    <div class="mdl-cell mdl-cell--8-col">
-                    <h4>Shopping Cart</h4>
 
 
+                <div class="mdl-cell mdl-cell--8-col">
+                <h4>Shopping Cart</h4>
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                  <thead>
+                    <tr>
+                      <th class="mdl-data-table__cell--non-numeric">Item</th>
 
+                      <th>Price/Day</th>
+                      <th>Days</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr>
+                      <td class="mdl-data-table__cell--non-numeric">Event upgrade</td>
+
+                      <td>$2.35</td>
+                      <td>10</td>
+                      <td><b>$2.35</b></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                   <h4>Payment Details</h4>
+
+                  <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" required type="text" id="sample3">
+                        <label class="mdl-textfield__label" for="sample3">Name on Card</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" required type="text" id="sample3">
+                        <label class="mdl-textfield__label" for="sample3">Email</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--7-col">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" required type="text" id="sample3">
+                        <label class="mdl-textfield__label" for="sample3">Credit Card #</label>
+                      </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--3-col">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" required type="text" id="sample3">
+                        <label class="mdl-textfield__label" for="sample3">Expiration MM/DD</label>
+                      </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--2-col">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" required type="text" id="sample3">
+                        <label class="mdl-textfield__label" for="sample3">CVC#</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pointslocal-secure-block-footer">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                    Checkout and Upgrade
+                  </button>
+                  </div>
 
                       <div class="mdl-grid">
 
@@ -203,20 +291,7 @@ Pointslocal: 39 E. 30th Street, #4 New York, NY 10016
               </div>
 
 
-<script>
-document.getElementById("pointslocal-secure-form-image-upload").onchange = function () {
-    var reader = new FileReader();
 
-    reader.onload = function (e) {
-        // get loaded data and render thumbnail.
-        document.getElementById("pointslocal-secure-form-image-preview").src = e.target.result;
-        document.querySelector(".pointslocal-event-preview-image").src = e.target.result;
-    };
-
-    // read the image file as a data URL.
-    reader.readAsDataURL(this.files[0]);
-};
-</script>
           <[content-group:200]>
           <[content-group:201]>
           <[content-group:202]>

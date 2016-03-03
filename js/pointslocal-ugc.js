@@ -200,6 +200,6 @@
               }
             });
             var totalAmount =  (_UPGRADE_RATE * totalDates).toFixed(2) ;
-            $('.pointslocal-secure-upgrade-days').text(totalDates.toFixed(2));
+            $('.pointslocal-secure-upgrade-days').text(totalDates);
             $('.pointslocal-secure-upgrade-total').text(totalAmount);
           }

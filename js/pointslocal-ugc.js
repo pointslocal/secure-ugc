@@ -50,7 +50,7 @@
             }
             
           }
-          function addDate(el,init) {
+          function addDate(el,init,cb) {
 
             var model = document.querySelector('#dateModel .dateModelHTML');
             var dateModel = model.cloneNode(true);
@@ -74,6 +74,9 @@
             $('.pointslocal-secure-step-datepicker').pickadate({
               min: new Date(),
               onSet: function(context) {
+                if (cb) {
+                  cb();
+                }
                 window.setTimeout(function() {
                   $('.mdl-textfield').each(function() {
                     this.MaterialTextfield.change($(this).find('.mdl-textfield__input').val());
@@ -90,6 +93,7 @@
                 }, 10);
               }
             });
+
           }
 
           function dismissToast() {
@@ -186,4 +190,16 @@
             });
             $('#date_info').val(JSON.stringify(dates));
             $('.pointslocal-secure-form').submit();
+          }
+
+          function compileCheckoutAmount() {
+            var totalDates = 0;
+            $('.pointslocal-secure-step-datepicker').each(function() {
+              if ($(this).val()) {
+                totalDates++;
+              }
+            });
+            var totalAmount =  (_UPGRADE_RATE * totalDates).toFixed(2) ;
+            $('.pointslocal-secure-upgrade-days').text(totalDates.toFixed(2));
+            $('.pointslocal-secure-upgrade-total').text(totalAmount);
           }

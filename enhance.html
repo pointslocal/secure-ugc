@@ -98,6 +98,9 @@
                     </div>
 
         </div>
+        <script>
+        _UPGRADE_RATE = 7.50;
+        </script>
 
         <div class="pointslocal-secure-create-steps">
 
@@ -169,16 +172,24 @@ will rotate in our featured events position making sure it gets the exposure you
 
 
                     <div class="mdl-cell mdl-cell--4-col">
-                      <h3>1. Select Dates</h3>
+                      <h3 style="display: inline-block;">Select Dates</h3>
+                      <div id="tt4" class="icon material-icons">help</div>
+                      <div class="mdl-tooltip mdl-tooltip--large" for="tt4">
+                      Set the date or dates you'd like this event to have prominent, featured status 
+                      </div>
                     </div>
                     <div class="mdl-cell mdl-cell--8-col">
+                      Choose the dates you'd like your event to have featured status.
                       <div id="pointslocal-secure-create-date-container"></div>
-                      <a onclick="addDate('#pointslocal-secure-create-date-container',false);">Add More</a>
-                      <script>addDate('#pointslocal-secure-create-date-container',true);componentHandler.upgradeDom();</script>
+                        <button onclick="addDate('#pointslocal-secure-create-date-container',false, function() { compileCheckoutAmount(); });return false;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                          Add Another Date
+                        </button>
+                      
+                      <script>addDate('#pointslocal-secure-create-date-container',true, function() { compileCheckoutAmount(); });componentHandler.upgradeDom();</script>
                     </div>
 
                     <div class="mdl-cell mdl-cell--4-col">
-                      <h3>2. Payment</h3>
+                      <h3>Payment</h3>
                     </div>
 
 
@@ -200,8 +211,8 @@ will rotate in our featured events position making sure it gets the exposure you
                       <td class="mdl-data-table__cell--non-numeric">Event upgrade</td>
 
                       <td>$2.35</td>
-                      <td>10</td>
-                      <td><b>$2.35</b></td>
+                      <td><span class="pointslocal-secure-upgrade-days">0</span></td>
+                      <td><b>$<span class="pointslocal-secure-upgrade-total">0.00</span></b></td>
                     </tr>
                   </tbody>
                 </table>

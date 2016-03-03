@@ -196,16 +196,44 @@ background: #3f51b5;
   color: #999;
 }
 
+.pointslocal-event-preview {
+  position: relative;
+}
 
+.pointslocal-event-ribbon-container {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 100px;
+  height: 100px;
+
+}
+.pointslocal-event-ribbon {
+  background-color :#ff7f20;
+  font-size: 11px;
+  box-shadow: 0px 0px 8px rgba(0,0,0,.25);
+  margin-top: -10px;
+  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 100%;
+  color: #fff;
+}
 .pointslocal-event-preview h2 {
   color: #444;
   font-size: 32px;
   margin: 0px;
   line-height: 48px;
 }
+.pointslocal-event-preview.enhanced h2 {
+  font-size: 34px;
+}
 .pointslocal-event-preview h2 a {
   color: #444;
   text-decoration: none;
+}
+.pointslocal-event-preview-text {
+  font-size: 18px;
 }
 .pointslocal-list-event-header a {
     color: #666;

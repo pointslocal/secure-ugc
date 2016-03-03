@@ -1,0 +1,167 @@
+<html>
+<head>
+    <!--
+        200 - 299: body stuff
+        1000 - 1999: header stuff
+        2000 - 2999: subheader stuff
+        3000 - 3999: hamburger nav stuff
+        4000 - 4999: custom body scripts / css
+        5000 - 5999: custom footer
+    -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/ugc-2016.css">
+    <link rel="stylesheet" href="/partners/<[sitecode]>/css/events-custom.css">
+    <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <[partner:partner-header-includes]>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="js/picker.js"></script>
+    <script src="js/picker.date.js"></script>
+    <script src="js/picker.time.js"></script>
+    <script src="js/pointslocal-ugc.js"></script>
+    <!--
+    customer header stuff
+    -->
+    <[content-group:1900]>
+</head>
+<body>
+
+    <!-- customer top body -->
+    <[content-group:4000]>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+      <div class="mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">
+            <a href="<[@publication_logo_link]>"><img src="<[@publication_logo]>" style="height: 34px; vertical-align: text-bottom; opacity: .9" /></a>
+            <!-- customer logo -->
+            <[content-group:1000]>
+          </span>
+          <!-- Add spacer, to align navigation to the right in desktop -->
+          <div class="mdl-layout-spacer"></div>
+
+          <!-- Navigation -->
+          <div class="">
+            <nav class="mdl-navigation">
+                <[partner:custom-header]>
+                <!-- customer nav -->
+                  <[content-group:1100]>
+                <!-- /customer nav -->
+            </nav>
+          </div>
+          <span class="mdl-layout-title">
+            <[content-group:1200]>
+          </span>
+          <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+            <[content-group:1300]>
+          </ul>
+        </div>
+        <[partner:custom-subheader]>
+      </div>
+
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">
+          <!-- customer nav drawer -->
+        </span>
+        <nav class="mdl-navigation">
+          <[content-group:2000]>
+        </nav>
+      </div>
+
+      <div class="mdl-layout__content">
+        <a name="top"></a>
+
+
+
+
+        <div class="pointslocal-secure-create-steps">
+
+
+
+          <div class="mdl-grid pointslocal-secure-grid">
+
+
+
+              <div class="mdl-cell mdl-cell--12-col">
+
+
+                <div class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                  <form autocomplete="off" method="POST" action="/test-submit" enctype="multipart/form-data" class="pointslocal-secure-form">
+                  <!-- token -->
+                  <input type="hidden" name="date_info" value="" id="date_info" />
+                  <div >
+                  <div class="pointslocal-secure-block-header pointslocal-secure-block-header-jumbotron">
+                    Make Your {{title}} Stand Out!
+                  </div>
+                  <div class="pointslocal-secure-block-content">
+                  
+                  <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--8-col">
+                      prev
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col">
+                      <p>For Just $? a day, you can make {{title}} stand out as a premiere event in {{city}}</p>
+                    </div>
+                  </div>
+                  
+
+
+                  </div>
+
+
+
+                  </div>
+
+
+
+
+                  </form>
+
+                </div>
+              </div>
+
+
+
+          </div>
+
+
+
+              </div>
+
+
+<script>
+document.getElementById("pointslocal-secure-form-image-upload").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("pointslocal-secure-form-image-preview").src = e.target.result;
+        document.querySelector(".pointslocal-event-preview-image").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
+</script>
+          <[content-group:200]>
+          <[content-group:201]>
+          <[content-group:202]>
+          <[content-group:203]>
+          <[content-group:204]>
+        <footer class="mdl-mega-footer">
+            
+            <!-- customer footer -->
+            <[content-group:5000]>
+
+        </footer>
+      </div>
+    </div>
+    <!-- customer bottom body -->
+    <[content-group:4100]>
+</body>
+</html>

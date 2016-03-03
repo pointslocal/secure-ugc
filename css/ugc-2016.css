@@ -138,6 +138,7 @@ background: #3f51b5;
 .pointslocal-secure-block-header, .pointslocal-secure-block-content {
   padding: 20px;
 }
+
 .pointslocal-secure-block-content h6 {
   margin-bottom: 0px;
   font-weight: 800;
@@ -151,6 +152,9 @@ background: #3f51b5;
 
   font-size: 20px;
   font-weight: 100;
+}
+.pointslocal-secure-block-header-jumbotron {
+  font-size: 26px;
 }
 .pointslocal-secure-form select.mdl-textfield__input {
     height: 36px;
